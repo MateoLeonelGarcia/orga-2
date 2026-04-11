@@ -32,8 +32,22 @@ void todoAMayuscula(char frase[])
 
 int main()
 {
+
+    /*utilizar en string.h): strcpy, strcat, strlen, strcmp, etc. Para acceder a la
+documentaci´on de cada funci´on se puede usar la l´ınea de comando: man strcpy, man
+strlen, etc.
+Side quest: investigar que significa restrict en la firma de la funci´on strcpy*/
     char frase[] = "estA FRASE esta todo en mayusculas";
-    todoAMayuscula(frase);
-    printf("Resultado: %s\n", frase);
+    char frasecopia[] = "estA FRASE esta todo en minusculas";
+    // strcpy(frase, frasecopia); /*dest tiene que tener la capacidad para poder copiar lo de src*/
+    printf("ResultadoFraseCopia: %s\n", frasecopia);
+    // todoAMayuscula(frase);
+    printf("ResultadoFrase: %s\n", frase);
+
+    // printf("concatenacion: %s\n", strcat(frase, frasecopia)); /*similar a anterior, tener cuidado con la capacidad de destino*/
+    printf("ResultadoFrase: %s\n", frase);
+    printf("Longitud de frase: %lu\n", strlen(frase));
+    printf("Frase y frasecopia son iguales?: %u\n", strcmp(frase, frasecopia));
+    printf("Frase y Frase son iguales?: %u\n", strcmp(frase, frase));
     return 0;
 }
