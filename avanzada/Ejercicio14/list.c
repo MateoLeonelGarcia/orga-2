@@ -1,5 +1,6 @@
 #include "list.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 list_t *listNew(type_t t)
 {
@@ -86,4 +87,9 @@ void listDelete(list_t *l)
         free(tmp);
     }
     free(l);
+}
+/*no es parte del ejercicio, voy a hacer que printee el tamanio*/
+void printList(list_t *l)
+{
+    printf("size de la lista: %u\n", l->size);
 }

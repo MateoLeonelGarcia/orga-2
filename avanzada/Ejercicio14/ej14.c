@@ -3,10 +3,13 @@
 int main()
 {
     list_t *l = listNew(TypeFAT32);
+    printList(l);
     fat32_t *f1 = new_fat32();
     fat32_t *f2 = new_fat32();
     listAddFirst(l, f1);
+    printList(l);
     listAddFirst(l, f2);
+    printList(l);
     listDelete(l);
     rm_fat32(f1);
     rm_fat32(f2);

@@ -19,5 +19,6 @@ void listAddFirst(list_t *l, void *data); // copia el dato
 void *listGet(list_t *l, uint8_t i);      // se asume: i < l->size
 void *listRemove(list_t *l, uint8_t i);   // se asume: i < l->size
 void listDelete(list_t *l);
+void printList(list_t *l);
 
 #endif
