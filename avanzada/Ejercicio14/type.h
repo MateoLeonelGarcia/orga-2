@@ -21,5 +21,8 @@ ntfs_t *copy_ntfs(ntfs_t *file);
 void rm_fat32(fat32_t *file);
 void rm_ext4(ext4_t *file);
 void rm_ntfs(ntfs_t *file);
-
+typedef struct list list_t; // forward declaration
+void printFat32List(list_t *l);
+void printExt4List(list_t *l);
+void printNtfsList(list_t *l);
 #endif

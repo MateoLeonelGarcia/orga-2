@@ -88,8 +88,19 @@ void listDelete(list_t *l)
     }
     free(l);
 }
-/*no es parte del ejercicio, voy a hacer que printee el tamanio*/
+
 void printList(list_t *l)
 {
-    printf("size de la lista: %u\n", l->size);
+    switch (l->type)
+    {
+    case TypeFAT32:
+        printFat32List(l);
+        break;
+    case TypeEXT4:
+        printExt4List(l);
+        break;
+    case TypeNTFS:
+        printNtfsList(l);
+        break;
+    }
 }

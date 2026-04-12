@@ -1,5 +1,7 @@
 #include "type.h"
+#include "list.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 fat32_t *new_fat32()
 {
@@ -48,4 +50,41 @@ void rm_ext4(ext4_t *file)
 void rm_ntfs(ntfs_t *file)
 {
     free(file);
+}
+
+void printFat32List(list_t *l)
+{
+    printf("Lista FAT32 (size: %u):\n", l->size);
+    node_t *n = l->first;
+    while (n)
+    {
+        fat32_t *item = (fat32_t *)n->data;
+        printf("%u  ", *item);
+        n = n->next;
+    }
+    printf("\n");
+}
+void printExt4List(list_t *l)
+{
+    printf("Lista EXT4 (size: %u):\n", l->size);
+    node_t *n = l->first;
+    while (n)
+    {
+        ext4_t *item = (ext4_t *)n->data;
+        printf("%u  ", *item);
+        n = n->next;
+    }
+    printf("\n");
+}
+void printNtfsList(list_t *l)
+{
+    printf("Lista NTFS (size: %u):\n", l->size);
+    node_t *n = l->first;
+    while (n)
+    {
+        ntfs_t *item = (ntfs_t *)n->data;
+        printf("%lu  ", *item);
+        n = n->next;
+    }
+    printf("\n");
 }
