@@ -8,6 +8,7 @@ list_t *listNew(type_t t)
     l->type = t; // l->type es equivalente a (*l).type
     l->size = 0;
     l->first = NULL;
+    l->last = NULL;
     return l;
 }
 
@@ -26,7 +27,18 @@ void listAddFirst(list_t *l, void *data)
         n->data = (void *)copy_ntfs((ntfs_t *)data);
         break;
     }
+    n->prev = NULL;
     n->next = l->first;
+    if (l->size == 0)
+    {
+        l->last = n;
+    }
+    else
+    {
+        l->first->prev = n;
+        // node_t *first = l->first;
+        // first->prev = n;
+    }
     l->first = n;
     l->size++;
 }
@@ -109,25 +121,30 @@ void swap(uint8_t x, uint8_t y, list_t *l)
 {
     if (l->size > 1)
     {
-        node_t *nodoY = nesimoNodo(y, l);
-        node_t *nodoX = nesimoNodo(x, l);
+        node_t *nodoY = listGet(l, y);
+        node_t *nodoX = listGet(l, x);
         void *dataTmp = nodoX->data;
         nodoX->data = nodoY->data;
         nodoY->data = dataTmp;
     }
 }
 
-node_t *nesimoNodo(uint8_t n, list_t *l)
+void listAddLast(list_t *l, void *data)
 {
-    if (l->size < n - 1)
+    node_t *n = malloc(sizeof(node_t));
+    switch (l->type)
     {
-        return NULL;
+    case TypeFAT32:
+        n->data = (void *)copy_fat32((fat32_t *)data);
+        break;
+    case TypeEXT4:
+        n->data = (void *)copy_ext4((ext4_t *)data);
+        break;
+    case TypeNTFS:
+        n->data = (void *)copy_ntfs((ntfs_t *)data);
+        break;
     }
-    node_t *node = l->first;
-    for (size_t i = 0; i < n; i++)
-    {
-        node = node->next;
-    }
-    // printf("el valor del nodo es")
-    return node;
+    n->prev = l->last;
+    l->last->next = n;
+    l->size++;
 }
