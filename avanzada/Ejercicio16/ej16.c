@@ -14,7 +14,7 @@ int main()
     *f4 += 3;
     *f5 += 4;
 
-    listAddFirst(l, f5);
+    listAddLast(l, f5);
     listAddFirst(l, f4);
     listAddFirst(l, f3);
     listAddFirst(l, f2);

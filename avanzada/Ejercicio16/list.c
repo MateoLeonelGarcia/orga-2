@@ -144,7 +144,17 @@ void listAddLast(list_t *l, void *data)
         n->data = (void *)copy_ntfs((ntfs_t *)data);
         break;
     }
-    n->prev = l->last;
-    l->last->next = n;
+    n->next = NULL;
+    if (l->size == 0)
+    {
+        n->prev = NULL;
+        l->first = n;
+    }
+    else
+    {
+        n->prev = l->last;
+        l->last->next = n;
+    }
+
     l->size++;
 }
